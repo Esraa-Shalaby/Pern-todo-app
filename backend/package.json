@@ -33,9 +33,9 @@
     "nodemon": "^3.1.0",
     "ts-node": "^10.9.2"
   },
-  "scripts": {
-    "dev": "nodemon --exec ts-node src/index.ts",
-    "knex": "knex --knexfile ./src/db/config.ts",
-    "heroku-postbuild": "cd frontend && yarn install && yarn build"
-  }
+"scripts": {
+  "dev": "nodemon --exec ts-node src/index.ts",
+  "knex": "knex --knexfile ./src/db/config.ts",
+  "heroku-postbuild": "cd frontend && yarn install && yarn build"
+}
 }

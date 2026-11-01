@@ -1,38 +1,44 @@
 services:
-  db:
-    image: postgres:16-alpine
-    environment:
-      POSTGRES_DB: tododb
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d tododb"]
-      interval: 5s
-      timeout: 5s
-      retries: 10
-
-  backend:
-    build: ./backend
-    ports:
-      - "4000:4000"
-    environment:
-      PG_HOST: db             
-      PG_PORT: 5432
-      PG_DATABASE: tododb
-      PG_USER: postgres
-      PG_PASSWORD: postgres
-    depends_on:
-      db:
-        condition: service_healthy
-
   frontend:
+    container_name: frontend
     build: ./frontend
     ports:
       - "3000:80"
     depends_on:
       - backend
+
+  backend:
+    container_name: backend
+    build: ./backend
+    ports:
+      - "4000:4000"
+    depends_on:
+      database:
+        condition: service_healthy
+    environment:
+      PG_HOST: ${PG_HOST}
+      PG_PORT: ${PG_PORT}
+      PG_USER: ${PG_USER}
+      PG_PASSWORD: ${PG_PASSWORD}
+      PG_DATABASE: ${PG_DATABASE}
+   
+
+  database:
+    container_name: database
+    image: postgres:16
+    environment:
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      POSTGRES_DB: ${PG_DATABASE}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${PG_USER} -d ${PG_DATABASE}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
 
 volumes:
   pgdata:
