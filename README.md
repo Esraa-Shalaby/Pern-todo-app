@@ -1,4 +1,4 @@
-# To_Do_App(React,Node,Express,Postgresql,Docker)
+# To_Do_App (React, Node, Express, PostgreSQL, Docker)
 
 A full-stack to-do app built with the **PERN stack** (PostgreSQL, Express, React, Node.js) and fully containerized with **Docker Compose**.
 
@@ -54,8 +54,8 @@ A full-stack to-do app built with the **PERN stack** (PostgreSQL, Express, React
 ### Run
 
 ```bash
-git clone https://github.com/<your-username>/pern-todo-docker.git
-cd pern-todo-docker
+git clone https://github.com/<your-username>/To_Do_App-React-Node-Express-PostgreSQL-Docker.git
+cd To_Do_App-React-Node-Express-PostgreSQL-Docker
 cp .env.example .env      # optional: every variable has a default
 docker compose up --build
 ```
@@ -112,8 +112,8 @@ npm run dev
 
 ```bash
 cd frontend
-yarn install
-yarn start
+npm install
+npm start
 ```
 
 Then open http://localhost:3000.
@@ -138,7 +138,7 @@ Request bodies are wrapped in a `todo` object, for example:
 
 ```bash
 cd frontend
-yarn test
+npm test
 ```
 
 ## Roadmap
