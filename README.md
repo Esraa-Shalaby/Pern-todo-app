@@ -148,7 +148,3 @@ npm test
 - [ ] Search, filter and sort
 - [ ] Dark mode
 - [ ] Animations
-
-## Author
-
-**Esraa Shalaby**: [GitHub](https://github.com/Esraa-Shalaby) · [LinkedIn](https://linkedin.com/in/esraa-mohamed-shalaby)
